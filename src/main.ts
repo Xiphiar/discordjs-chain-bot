@@ -25,14 +25,22 @@ client.on('interactionCreate', async interaction => {
 client.login(process.env.BOT_TOKEN).then(()=>init());
 
 const init = async () => {
-    //initialize persistent storage
     if (!process.env.CHANNEL_ID) throw 'Please set CHANNEL_ID env value.';
 
+    //initialize persistent storage
     await storage.init( /* options ... */ );
+
     const channelRes = await client.channels.fetch(process.env.CHANNEL_ID);
     if (!channelRes) throw 'Unable to find channel with ID CHANNEL_ID. Is the bot in the server?';
     channel = channelRes;
-    for (const chain of CHAINS){
-        await checkProposals(chain).catch(e=>console.error(e));
-    }
+
+    intervalFunction();
+    setInterval(intervalFunction, 600_000); //every 10 min
+}
+
+const intervalFunction = async () => {
+  for (const chain of CHAINS){
+      await checkProposals(chain).catch(e=>console.error(e));
+  }
+  console.log('All checkProposals completed.')
 }

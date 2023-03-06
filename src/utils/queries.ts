@@ -2,6 +2,7 @@ import { getQuerier } from "./clients"
 import storage from 'node-persist';
 import { ProposalStatus } from "secretjs/dist/grpc_gateway/cosmos/gov/v1beta1/gov.pb";
 import { Chain } from "../config";
+import axios from "axios";
 
 export const getProposals = async (chainId: string) => {
     const client = getQuerier(chainId);
@@ -10,6 +11,12 @@ export const getProposals = async (chainId: string) => {
         proposal_status: "2",
     })
     return result.proposals || [];
+}
+
+export const getProposalDetails = async (proposal_id: string, rest: string) => {
+    const { data } = await axios.get(`${rest}/cosmos/gov/v1/proposals/${proposal_id}`)
+    console.log(data)
+    return data;
 }
 
 export const getVoted = async (proposal_id: string, chain: Chain) => {
