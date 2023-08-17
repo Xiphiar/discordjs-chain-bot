@@ -1,9 +1,10 @@
 import { getProposalDetails, getProposals, getVoted } from "./utils/queries"
 import storage from 'node-persist';
 import { Proposal } from "secretjs/dist/grpc_gateway/cosmos/gov/v1beta1/gov.pb";
-import { newGenericEmbed, newProposalEmbed } from "./utils/embedBuilders";
+import { newErrorEmbed, newGenericEmbed, newProposalEmbed } from "./utils/embedBuilders";
 import { Chain } from "./config";
 import { channel } from "./main";
+import { getQuerier } from "./utils/clients";
 
 export const checkProposals = async (chain: Chain) => {
     console.log(`Checking Proposals for ${chain.chainId}`)
@@ -32,4 +33,33 @@ export const checkProposals = async (chain: Chain) => {
         }
     }
     await storage.setItem(key, known)
+}
+
+export const checkBalances = async (chain: Chain) => {
+    if (!chain.accounts.length) {
+        console.log(`Skipping balance checks for ${chain.chainId}`)
+        return;
+    };
+    if (!chain.min_balance) {
+        console.error(`Chain ${chain.chainId} has accounts monitored but 'min_balance' is not defined!`)
+        const embed = newErrorEmbed(`Chain ${chain.chainId} has accounts monitored but 'min_balance' is not defined!`)
+        //@ts-ignore
+        channel.send({ embeds: [embed] });
+        return;
+    }
+    console.log(`Checking Account Balances for ${chain.chainId}`)
+
+    const client = getQuerier(chain.chainId);
+
+    for (const address of chain.accounts) {
+        const {balance} = await client.query.bank.balance({ address, denom: chain.min_balance.denom })
+        if (!balance?.amount || parseInt(balance.amount) < chain.min_balance.amount) {
+
+            const fullAmount = parseInt(balance?.amount || '0') / Math.pow(10, chain.min_balance.decimals)
+
+            const embed = newErrorEmbed(`Balance of account ${address} on ${chain.chainId} is low: ${fullAmount.toFixed(2)} ${chain.min_balance.fullDenom}`)
+            //@ts-ignore
+            channel.send({ embeds: [embed] });
+        }
+    }
 }

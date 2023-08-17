@@ -41,3 +41,13 @@ export const newGenericEmbed = (chain: Chain, proposal: any, details: any, hasVo
 
 	return embed;
 }
+
+export const newErrorEmbed = (message: string) => {
+	// inside a command, event listener, etc.
+	const embed = new EmbedBuilder()
+		.setColor(0xf44336)
+		.setTitle(`Error`)
+		.setDescription(message)
+
+	return embed;
+}
