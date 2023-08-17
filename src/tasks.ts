@@ -3,7 +3,7 @@ import storage from 'node-persist';
 import { Proposal } from "secretjs/dist/grpc_gateway/cosmos/gov/v1beta1/gov.pb";
 import { newErrorEmbed, newGenericEmbed, newProposalEmbed } from "./utils/embedBuilders";
 import { Chain, getChain } from "./config";
-import { channel } from "./main";
+import { govChannel, errChannel } from "./main";
 import { getQuerier } from "./utils/clients";
 
 export const checkProposals = async (chain: Chain) => {
@@ -29,7 +29,7 @@ export const checkProposals = async (chain: Chain) => {
             const embed = prop.content ? newProposalEmbed(chain, prop, voted) : newGenericEmbed(chain, prop, details, voted);
 
             //@ts-ignore
-            channel.send({ embeds: [embed] });
+            govChannel.send({ embeds: [embed] });
         }
     }
     await storage.setItem(key, known)
@@ -44,7 +44,7 @@ export const checkBalances = async (chain: Chain) => {
         console.error(`Chain ${chain.chainId} has accounts monitored but 'min_balance' is not defined!`)
         const embed = newErrorEmbed(`Chain ${chain.chainId} has accounts monitored but 'min_balance' is not defined!`)
         //@ts-ignore
-        channel.send({ embeds: [embed] });
+        govChannel.send({ embeds: [embed] });
         return;
     }
     console.log(`Checking Account Balances for ${chain.chainId}`)
@@ -59,7 +59,7 @@ export const checkBalances = async (chain: Chain) => {
 
             const embed = newErrorEmbed(`Balance of account ${address} on ${chain.chainId} is low: ${fullAmount.toFixed(2)} ${chain.min_balance.fullDenom}`)
             //@ts-ignore
-            channel.send({ embeds: [embed] });
+            errChannel.send({ embeds: [embed] });
         }
     }
 }
@@ -87,7 +87,7 @@ export const checkIbcClients = async (chain: Chain) => {
             //@ts-ignore
             const embed = newErrorEmbed(`IBC Client ${client_id} on ${chain.chainId} connecting to ${client_state?.chain_id} has status: ${status}`)
             //@ts-ignore
-            channel.send({ embeds: [embed] });
+            govChannel.send({ embeds: [embed] });
         }
 
         // ######################
@@ -125,7 +125,7 @@ export const checkIbcClients = async (chain: Chain) => {
             //@ts-ignore
             const embed = newErrorEmbed(`IBC Client ${client_id} on ${chain.chainId} connecting to ${client_state?.chain_id} will expire in: ${expiresIn} minutes!`)
             //@ts-ignore
-            channel.send({ embeds: [embed] });
+            errChannel.send({ embeds: [embed] });
         }
         
     }

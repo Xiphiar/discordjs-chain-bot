@@ -8,8 +8,8 @@ import { checkBalances, checkIbcClients, checkProposals } from './tasks';
 dotenv.config();
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-export let channel: Channel; // = client.channels.cache.get(process.env.CHANNEL_ID);
-
+export let govChannel: Channel;
+export let errChannel: Channel;
 client.on('ready', () => {
   console.log(`Logged in as ${client.user?.tag}!`);
 });
@@ -25,14 +25,19 @@ client.on('interactionCreate', async interaction => {
 client.login(process.env.BOT_TOKEN).then(()=>init());
 
 const init = async () => {
-    if (!process.env.CHANNEL_ID) throw 'Please set CHANNEL_ID env value.';
+  if (!process.env.GOV_CHANNEL_ID) throw 'Please set GOV_CHANNEL_ID env value.';
+  if (!process.env.ERR_CHANNEL_ID) throw 'Please set ERR_CHANNEL_ID env value.';
 
     //initialize persistent storage
     await storage.init( /* options ... */ );
 
-    const channelRes = await client.channels.fetch(process.env.CHANNEL_ID);
-    if (!channelRes) throw 'Unable to find channel with ID CHANNEL_ID. Is the bot in the server?';
-    channel = channelRes;
+    const govChannelRes = await client.channels.fetch(process.env.GOV_CHANNEL_ID);
+    if (!govChannelRes) throw 'Unable to find channel with ID GOV_CHANNEL_ID. Is the bot in the server?';
+    govChannel = govChannelRes;
+
+    const errChannelRes = await client.channels.fetch(process.env.ERR_CHANNEL_ID);
+    if (!errChannelRes) throw 'Unable to find channel with ID ERR_CHANNEL_ID. Is the bot in the server?';
+    errChannel = errChannelRes;
 
     intervalFunction();
     setInterval(intervalFunction, 600_000); //every 10 min
