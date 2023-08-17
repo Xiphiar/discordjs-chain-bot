@@ -191,7 +191,7 @@ export const CHAINS: Chain[] = [
         image: 'archway.png',
         validators: ['archwayvaloper1uvkmmjtvzxtn9cjhd2c9kdncjfslnql8mz786s'],
         accounts: ['archway1jct5gn7gpknl0kmqkm3agfwxm2mmtekwk42t3h','archway1eqzquzqmnyn8aqd0js5g5lwscp6g4k6tfag98x'],
-        ibc_clients: [],
+        ibc_clients: ['07-tendermint-22'],
         proposals: true,
         min_balance: {
             amount: 50_000000000000000000,
@@ -209,7 +209,7 @@ export const CHAINS: Chain[] = [
         image: 'archway.png',
         validators: [],
         accounts: ['archway1jct5gn7gpknl0kmqkm3agfwxm2mmtekwk42t3h','archway1eqzquzqmnyn8aqd0js5g5lwscp6g4k6tfag98x'],
-        ibc_clients: [],
+        ibc_clients: ['07-tendermint-39'],
         proposals: false,
         min_balance: {
             amount: 50_000000000000000000,
@@ -227,7 +227,7 @@ export const CHAINS: Chain[] = [
         image: 'archway.png',
         validators: [],
         accounts: ['nois1jct5gn7gpknl0kmqkm3agfwxm2mmtekwjkt9hc','nois1eqzquzqmnyn8aqd0js5g5lwscp6g4k6td7ftpf'],
-        ibc_clients: [],
+        ibc_clients: ['07-tendermint-15'],
         proposals: false,
         min_balance: {
             amount: 1_500000,
@@ -245,7 +245,7 @@ export const CHAINS: Chain[] = [
         image: 'archway.png',
         validators: [],
         accounts: ['nois1jct5gn7gpknl0kmqkm3agfwxm2mmtekwjkt9hc','nois1eqzquzqmnyn8aqd0js5g5lwscp6g4k6td7ftpf'],
-        ibc_clients: [],
+        ibc_clients: ['07-tendermint-47'],
         proposals: false,
         min_balance: {
             amount: 100_000000,

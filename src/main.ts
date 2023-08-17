@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import { getProposals } from './utils/queries';
 import storage from 'node-persist';
 import { CHAINS } from './config';
-import { checkBalances, checkProposals } from './tasks';
+import { checkBalances, checkIbcClients, checkProposals } from './tasks';
 
 dotenv.config();
 
@@ -42,6 +42,7 @@ const intervalFunction = async () => {
   for (const chain of CHAINS){
       await checkProposals(chain).catch(e=>console.error(e));
       await checkBalances(chain).catch(e=>console.error(e));
+      await checkIbcClients(chain).catch(e=>console.error(e));
   }
   console.log('All checks completed.')
 }
