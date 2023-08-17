@@ -146,7 +146,15 @@ export const CHAINS: Chain[] = [
         chainId: 'vidulum-1',
         image: 'vidulum.png',
     },
-    
+    {
+        name: 'Archway',
+        cosmosId: 'archway',
+        pingMirror: 'https://explorer.trivium.network/archway',
+        valAddress: 'archwayvaloper1uvkmmjtvzxtn9cjhd2c9kdncjfslnql8mz786s',
+        restApi: 'https://archway.api.trivium.network:1317',
+        chainId: 'archway-1',
+        image: 'archway.png',
+    },
 ]
 
 export const getChain = (chainId: string) => {
