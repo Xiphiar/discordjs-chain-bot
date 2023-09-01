@@ -212,7 +212,7 @@ export const CHAINS: Chain[] = [
         ibc_clients: ['07-tendermint-39'],
         proposals: false,
         min_balance: {
-            amount: 50_000000000000000000,
+            amount: 20_000000000000000000,
             denom: 'aconst',
             fullDenom: 'CONST',
             decimals: 18,
