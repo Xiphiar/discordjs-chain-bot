@@ -44,7 +44,7 @@ export const checkBalances = async (chain: Chain) => {
         console.error(`Chain ${chain.chainId} has accounts monitored but 'min_balance' is not defined!`)
         const embed = newErrorEmbed(`Chain ${chain.chainId} has accounts monitored but 'min_balance' is not defined!`)
         //@ts-ignore
-        govChannel.send({ embeds: [embed] });
+        errChannel.send({ embeds: [embed] });
         return;
     }
     console.log(`Checking Account Balances for ${chain.chainId}`)
@@ -87,7 +87,10 @@ export const checkIbcClients = async (chain: Chain) => {
             //@ts-ignore
             const embed = newErrorEmbed(`IBC Client ${client_id} on ${chain.chainId} connecting to ${client_state?.chain_id} has status: ${status}`)
             //@ts-ignore
-            govChannel.send({ embeds: [embed] });
+            errChannel.send({ embeds: [embed] });
+
+            // Skip other checks and move on to next channel
+            continue;
         }
 
         // ######################
