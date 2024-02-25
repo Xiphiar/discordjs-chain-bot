@@ -111,18 +111,6 @@ export const CHAINS: Chain[] = [
         proposals: true,
     },
     {
-        name: 'IDEP',
-        cosmosId: 'idep',
-        pingMirror: 'https://explorer.trivium.network/idep',
-        restApi: 'https://idep-api.lavenderfive.com',
-        chainId: 'Antora',
-        image: 'idep.png',
-        validators: ['idepvaloper1qwt5w9mm2p5nayxhquetgvq5dm2aadhnt546xr'],
-        accounts: [],
-        ibc_clients: [],
-        proposals: true,
-    },
-    {
         name: 'BitSong',
         cosmosId: 'bitsong',
         pingMirror: 'https://explorer.trivium.network/bitsong',

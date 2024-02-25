@@ -7,6 +7,8 @@ import { govChannel, errChannel } from "./main";
 import { getQuerier } from "./utils/clients";
 
 export const checkProposals = async (chain: Chain) => {
+    if (!chain.proposals) return;
+    
     console.log(`Checking Proposals for ${chain.chainId}`)
 
     const key = `knownProposals-${chain.chainId}`
