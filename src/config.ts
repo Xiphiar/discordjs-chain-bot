@@ -278,7 +278,7 @@ export const CHAINS: Chain[] = [
         ibc_clients: ['07-tendermint-155'],
         proposals: false,
         min_balance: {
-            amount: 0_750000,
+            amount: 5_000000,
             denom: 'untrn',
             fullDenom: 'NTRN',
             decimals: 6,
@@ -296,7 +296,7 @@ export const CHAINS: Chain[] = [
         ibc_clients: ['07-tendermint-2654'],
         proposals: false,
         min_balance: {
-            amount: 0_750000,
+            amount: 2_000000,
             denom: 'uatom',
             fullDenom: 'ATOM',
             decimals: 6,
