@@ -131,7 +131,7 @@ export const CHAINS: Chain[] = [
         image: 'dyson.svg',
         validators: ['dysvaloper1uvkmmjtvzxtn9cjhd2c9kdncjfslnql8nfc8sc'],
         accounts: ['dys1jct5gn7gpknl0kmqkm3agfwxm2mmtekwul7y9r', 'dys1eqzquzqmnyn8aqd0js5g5lwscp6g4k6trhu2nj'],
-        ibc_clients: ['07-tendermint-2'],
+        ibc_clients: [], //['07-tendermint-2'],
         proposals: true,
         min_balance: {
             amount: 2000,
@@ -276,7 +276,7 @@ export const CHAINS: Chain[] = [
         validators: [],
         accounts: ['neutron14j6t348dqetup8aaycxdzek2dennkhqcl2mxan', 'neutron1frgmdv4pl2af8lfphy6apd66z63ph44nynfuwh'],
         ibc_clients: ['07-tendermint-155'],
-        proposals: false,
+        proposals: true,
         min_balance: {
             amount: 0_750000,
             denom: 'untrn',
@@ -294,7 +294,7 @@ export const CHAINS: Chain[] = [
         validators: [],
         accounts: ['cosmos14j6t348dqetup8aaycxdzek2dennkhqcm4jy85'],
         ibc_clients: ['07-tendermint-2654'],
-        proposals: false,
+        proposals: true,
         min_balance: {
             amount: 0_750000,
             denom: 'uatom',
