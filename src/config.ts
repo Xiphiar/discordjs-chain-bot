@@ -198,7 +198,7 @@ export const CHAINS: Chain[] = [
         name: 'Archway Constantine',
         cosmosId: 'archway',
         pingMirror: 'https://explorer.trivium.network/archway',
-        restApi: 'https://api.constantine.archway.tech',
+        restApi: 'https://api.constantine.archway.io',
         chainId: 'constantine-3',
         image: 'archway.png',
         validators: [],
