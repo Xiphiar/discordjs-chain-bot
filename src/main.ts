@@ -41,13 +41,20 @@ const init = async () => {
 
     intervalFunction();
     setInterval(intervalFunction, 600_000); //every 10 min
+    setInterval(twoHourIntervalFunction, 60 * 60 * 2 * 1_000); //every 2 hours
 }
 
 const intervalFunction = async () => {
   for (const chain of CHAINS){
       await checkProposals(chain).catch(e=>console.error(e));
-      await checkBalances(chain).catch(e=>console.error(e));
       await checkIbcClients(chain).catch(e=>console.error(e));
   }
   console.log('All checks completed.')
+}
+
+const twoHourIntervalFunction = async () => {
+  for (const chain of CHAINS){
+      await checkBalances(chain).catch(e=>console.error(e));
+  }
+  console.log('Balance checks completed.')
 }
