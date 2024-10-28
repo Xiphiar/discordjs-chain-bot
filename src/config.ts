@@ -32,7 +32,7 @@ export const CHAINS: Chain[] = [
         validators: ['secretvaloper1ahawe276d250zpxt0xgpfg63ymmu63a0svuvgw'],
         proposals: true,
         min_balance: {
-            amount: 100_000000,
+            amount: 20_000000,
             denom: 'uscrt',
             fullDenom: 'SCRT',
             decimals: 6,
@@ -175,42 +175,6 @@ export const CHAINS: Chain[] = [
         accounts: [],
         ibc_clients: [],
         proposals: true,
-    },
-    {
-        name: 'Archway',
-        cosmosId: 'archway',
-        pingMirror: 'https://explorer.trivium.network/archway',
-        restApi: 'https://archway.api.trivium.network:1317',
-        chainId: 'archway-1',
-        image: 'archway.png',
-        validators: ['archwayvaloper1uvkmmjtvzxtn9cjhd2c9kdncjfslnql8mz786s'],
-        accounts: ['archway1jct5gn7gpknl0kmqkm3agfwxm2mmtekwk42t3h','archway1eqzquzqmnyn8aqd0js5g5lwscp6g4k6tfag98x'],
-        ibc_clients: ['07-tendermint-22'],
-        proposals: true,
-        min_balance: {
-            amount: 50_000000000000000000,
-            denom: 'aarch',
-            fullDenom: 'ARCH',
-            decimals: 18,
-        }
-    },
-    {
-        name: 'Archway Constantine',
-        cosmosId: 'archway',
-        pingMirror: 'https://explorer.trivium.network/archway',
-        restApi: 'https://api.constantine.archway.io',
-        chainId: 'constantine-3',
-        image: 'archway.png',
-        validators: [],
-        accounts: ['archway1jct5gn7gpknl0kmqkm3agfwxm2mmtekwk42t3h','archway1eqzquzqmnyn8aqd0js5g5lwscp6g4k6tfag98x'],
-        ibc_clients: [],
-        proposals: false,
-        min_balance: {
-            amount: 20_000000000000000000,
-            denom: 'aconst',
-            fullDenom: 'CONST',
-            decimals: 18,
-        }
     },
     {
         name: 'Nois',
