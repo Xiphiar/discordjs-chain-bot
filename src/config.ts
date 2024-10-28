@@ -22,7 +22,7 @@ export const CHAINS: Chain[] = [
     {
         name: 'Secret Network',
         cosmosId: 'secretnetwork',
-        pingMirror: 'https://explorer.trivium.network/secret',
+        pingMirror: 'https://ping.pub/secret',
         voteAddress: 'secret1ahawe276d250zpxt0xgpfg63ymmu63a0ptj398',
         restApi: 'https://secret-4.api.trivium.network:1317',
         chainId: 'secret-4',
@@ -41,7 +41,7 @@ export const CHAINS: Chain[] = [
     {
         name: 'Sentinel',
         cosmosId: 'sentinel',
-        pingMirror: 'https://explorer.trivium.network/sentinel',
+        pingMirror: 'https://ping.pub/sentinel',
         restApi: 'https://api-sentinel-ia.cosmosia.notional.ventures',
         chainId: 'sentinelhub-2',
         image: 'sentinel.png',
@@ -59,7 +59,7 @@ export const CHAINS: Chain[] = [
     {
         name: 'Jackal',
         cosmosId: 'jackal',
-        pingMirror: 'https://explorer.trivium.network/jackal',
+        pingMirror: 'https://ping.pub/jackal',
         restApi: 'https://api.jackalprotocol.com',
         chainId: 'jackal-1',
         image: 'jackal.png',
@@ -77,7 +77,7 @@ export const CHAINS: Chain[] = [
     {
         name: 'Band Protocol',
         cosmosId: 'bans',
-        pingMirror: 'https://explorer.trivium.network/band',
+        pingMirror: 'https://ping.pub/band',
         restApi: 'https://laozi1.bandchain.org/api',
         chainId: 'laozi-mainnet',
         image: 'band.png',
@@ -89,7 +89,7 @@ export const CHAINS: Chain[] = [
     {
         name: 'IRISnet',
         cosmosId: 'irisnet',
-        pingMirror: 'https://explorer.trivium.network/iris',
+        pingMirror: 'https://ping.pub/iris',
         restApi: 'https://rest.cosmos.directory/irisnet',
         chainId: 'irishub-1',
         image: 'irisnet.png',
@@ -101,7 +101,7 @@ export const CHAINS: Chain[] = [
     {
         name: 'Rizon',
         cosmosId: 'rizon',
-        pingMirror: 'https://explorer.trivium.network/rizon',
+        pingMirror: 'https://ping.pub/rizon',
         restApi: 'https://rest.cosmos.directory/rizon',
         chainId: 'titan-1',
         image: 'rizon.png',
@@ -113,7 +113,7 @@ export const CHAINS: Chain[] = [
     {
         name: 'BitSong',
         cosmosId: 'bitsong',
-        pingMirror: 'https://explorer.trivium.network/bitsong',
+        pingMirror: 'https://ping.pub/bitsong',
         restApi: 'https://api-bitsong-ia.cosmosia.notional.ventures',
         chainId: 'bitsong-2b',
         image: 'bitsong.png',
@@ -125,7 +125,7 @@ export const CHAINS: Chain[] = [
     {
         name: 'Dyson Protocol',
         cosmosId: 'dyson',
-        pingMirror: 'https://explorer.trivium.network/dyson',
+        pingMirror: 'https://ping.pub/dyson',
         restApi: 'https://dyson.api.trivium.network:1317',
         chainId: 'dyson-mainnet-01',
         image: 'dyson.svg',
@@ -143,7 +143,7 @@ export const CHAINS: Chain[] = [
     {
         name: 'MEME',
         cosmosId: 'meme',
-        pingMirror: 'https://explorer.trivium.network/meme',
+        pingMirror: 'https://ping.pub/meme',
         restApi: 'https://api-meme-1.meme.sx',
         chainId: 'meme-1',
         image: 'meme.png',
@@ -155,7 +155,7 @@ export const CHAINS: Chain[] = [
     {
         name: 'Orai',
         cosmosId: 'orai',
-        pingMirror: 'https://explorer.trivium.network/oraichain',
+        pingMirror: 'https://ping.pub/oraichain',
         restApi: 'http://lcd.orai.io',
         chainId: 'Oraichain',
         image: 'orai.png',
@@ -167,7 +167,7 @@ export const CHAINS: Chain[] = [
     {
         name: 'Vidulum',
         cosmosId: 'vidulum',
-        pingMirror: 'https://explorer.trivium.network/vidulum',
+        pingMirror: 'https://ping.pub/vidulum',
         restApi: 'https://mainnet-lcd.vidulum.app',
         chainId: 'vidulum-1',
         image: 'vidulum.png',
