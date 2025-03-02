@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: discordjs-chain-bot
+    volumes:
+      - ./.node-persist:/app/.node-persist
+    restart: 'unless-stopped'

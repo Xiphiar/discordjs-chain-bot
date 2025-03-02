@@ -1,0 +1,6 @@
+.node-persist
+dist
+node_modules
+.vscode
+yarn-error.log
+.git
