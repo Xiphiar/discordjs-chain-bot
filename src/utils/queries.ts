@@ -4,7 +4,7 @@ import { ProposalStatus } from "secretjs/dist/grpc_gateway/cosmos/gov/v1beta1/go
 import { Chain } from "../config";
 import axios from "axios";
 
-export const getProposals = async (chainId: string) => {
+export const getActiveProposals = async (chainId: string) => {
     const client = getQuerier(chainId);
     const result = await client.query.gov.proposals({
         //@ts-ignore

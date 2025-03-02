@@ -1,4 +1,4 @@
-import { getProposalDetails, getProposals, getVoted } from "./utils/queries"
+import { getProposalDetails, getActiveProposals, getVoted } from "./utils/queries"
 import storage from 'node-persist';
 import { Proposal } from "secretjs/dist/grpc_gateway/cosmos/gov/v1beta1/gov.pb";
 import { newErrorEmbed, newGenericEmbed, newProposalEmbed } from "./utils/embedBuilders";
@@ -8,33 +8,37 @@ import { getQuerier } from "./utils/clients";
 
 export const checkProposals = async (chain: Chain) => {
     if (!chain.proposals) return;
-    
-    console.log(`Checking Proposals for ${chain.chainId}`)
+    try { 
+        console.log(`Checking Proposals for ${chain.chainId}`)
 
-    const key = `knownProposals-${chain.chainId}`
-    let known: Proposal[] = await storage.getItem(key) || []
-    let update = false;
+        const key = `knownProposals-${chain.chainId}`
+        let known: Proposal[] = await storage.getItem(key) || []
+        let update = false;
 
-    const proposals = await getProposals(chain.chainId);
+        const proposals = await getActiveProposals(chain.chainId);
 
-    for (const prop of proposals){
-        if (!prop.proposal_id) continue;
-        console.log(prop.proposal_id)
+        for (const prop of proposals){
+            if (!prop.proposal_id) continue;
+            console.log(prop.proposal_id)
 
-        if (!known.find(k=>k.proposal_id === prop.proposal_id)) {
-            known.push(prop);
-            update = true;
+            if (!known.find(k=>k.proposal_id === prop.proposal_id)) {
+                known.push(prop);
+                update = true;
 
-            const voted = await getVoted(prop.proposal_id, chain)
-            
-            const details = !prop.content ? await getProposalDetails(prop.proposal_id, chain.restApi) : undefined;
-            const embed = prop.content ? newProposalEmbed(chain, prop, voted) : newGenericEmbed(chain, prop, details, voted);
+                const voted = await getVoted(prop.proposal_id, chain)
+                
+                const details = !prop.content ? await getProposalDetails(prop.proposal_id, chain.restApi) : undefined;
+                const embed = prop.content ? newProposalEmbed(chain, prop, voted) : newGenericEmbed(chain, prop, details, voted);
 
-            //@ts-ignore
-            govChannel.send({ embeds: [embed] });
+                console.log('Sending Gov Alert')
+                //@ts-ignore
+                govChannel.send({ embeds: [embed] });
+            }
         }
+        await storage.setItem(key, known)
+    } catch (err: any) {
+        console.error(`Error checking Proposals for ${chain.chainId}:`, err)
     }
-    await storage.setItem(key, known)
 }
 
 export const checkBalances = async (chain: Chain) => {
@@ -77,6 +81,7 @@ export const checkIbcClients = async (chain: Chain) => {
     const client = getQuerier(chain.chainId);
 
     for (const client_id of chain.ibc_clients) {
+        console.log('Checking client', client_id)
         const {status} = await client.query.ibc_client.clientStatus({ client_id })
         const {client_state} = await client.query.ibc_client.clientState({ client_id })
 

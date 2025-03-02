@@ -1,6 +1,6 @@
 import { Channel, Client, GatewayIntentBits } from 'discord.js'
 import dotenv from 'dotenv';
-import { getProposals } from './utils/queries';
+import { getActiveProposals } from './utils/queries';
 import storage from 'node-persist';
 import { CHAINS } from './config';
 import { checkBalances, checkIbcClients, checkProposals } from './tasks';
@@ -48,6 +48,7 @@ const intervalFunction = async () => {
   for (const chain of CHAINS){
       await checkProposals(chain).catch(e=>console.error(e));
       await checkIbcClients(chain).catch(e=>console.error(e));
+      console.log('\n')
   }
   console.log('All checks completed.')
 }
